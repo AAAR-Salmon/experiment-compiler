@@ -1,12 +1,13 @@
 %{
 #include <stdio.h>
+#define YYSTYPE double
 #include "arith.tab.h"
 extern int yylex();
 extern int yyerror();
 %}
-%token NUMBER PLUS MINUS MULT DIV
+%token NUMBER
 %%
-expression : series  { printf("= %d\n", $1); }
+expression : series  { printf("= %f\n", $1); }
            ;
 
 series : series '+' term  { $$ = $1 + $3; }
