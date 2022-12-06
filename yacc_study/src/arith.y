@@ -15,13 +15,13 @@ double var_table[26];
 %token <var_idx> VAR
 %type <dval> expression term factor
 %%
-statement_list : statement_list statement '\n'
-               | statement '\n'
+statement_list : statement_list statement
+               | statement
                ;
 
-statement : VAR '=' expression
+statement : VAR '=' expression '\n'
             { var_table[$1] = $3; printf("%c = %f\n", 'a' + $1, $3); }
-          | expression
+          | expression '\n'
             { printf("@ = %f\n", $1); }
           ;
 
