@@ -32,7 +32,7 @@ statement : assign_stmt
           ;
 
 assign_stmt : IDENT ASSIGN expression SEMICORON
-            | IDENT LBRACKET NUMBER RBRACKET ASSIGN expression SEMICORON
+            | IDENT LBRACKET expression RBRACKET ASSIGN expression SEMICORON
             ;
 
 expression : expression ADD term
@@ -47,7 +47,7 @@ term : term MUL factor
 
 factor : IDENT
        | NUMBER
-       | IDENT LBRACKET NUMBER RBRACKET
+       | IDENT LBRACKET expression RBRACKET
        | LPAREN expression RPAREN
        ;
 
