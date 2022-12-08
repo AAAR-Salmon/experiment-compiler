@@ -26,7 +26,8 @@ statements : statement statements
            | statement
            ;
 
-statement : assign_stmt
+statement : expression_stmt
+          | assign_stmt
           | loop_stmt
           | branch_stmt
           ;
@@ -34,6 +35,9 @@ statement : assign_stmt
 assign_stmt : IDENT ASSIGN expression SEMICORON
             | IDENT LBRACKET expression RBRACKET ASSIGN expression SEMICORON
             ;
+
+expression_stmt : expression SEMICORON
+                ;
 
 expression : expression ADD term
            | expression SUB term
