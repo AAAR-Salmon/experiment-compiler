@@ -22,6 +22,8 @@ else    return ELSE;
 "=="    return EQUAL;
 "<"     return LT;
 ">"     return GT;
+"<="    return LEQ;
+">="    return GEQ;
 [a-zA-Z][a-zA-Z0-9]*  return IDENT;
 [0-9][0-9]*           return NUMBER;
 [\n\t ] ;

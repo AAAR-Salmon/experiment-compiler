@@ -7,7 +7,9 @@ extern int yyerror();
 %token DEFINE ARRAY WHILE IF ELSE
 %token SEMICORON
 %token LBRACKET RBRACKET LPAREN RPAREN LBRACE RBRACE
-%token ASSIGN ADD SUB MUL DIV EQUAL LT GT IDENT NUMBER
+%token ASSIGN ADD SUB MUL DIV
+%token EQUAL LT GT LEQ GEQ
+%token IDENT NUMBER
 %%
 program : declarations statements
         ;
@@ -59,6 +61,8 @@ branch_stmt : IF LPAREN cond_expr RPAREN LBRACE statements RBRACE
 cond_expr : expression EQUAL expression
           | expression LT expression
           | expression GT expression
+          | expression LEQ expression
+          | expression GEQ expression
           ;
 %%
 int main(void) {
