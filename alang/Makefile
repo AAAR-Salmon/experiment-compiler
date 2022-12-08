@@ -2,7 +2,7 @@ LEX = flex
 YACC = bison
 
 alang: build/alang.yy.c build/alang.tab.c
-	$(CC) $^ -o build/$@ -l fl -l y
+	$(CC) -DYYERROR_VERBOSE $^ -o build/$@ -l fl -l y
 
 build/alang.yy.c: src/alang.l
 	$(LEX) -o $@ $<
