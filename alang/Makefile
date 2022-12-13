@@ -9,6 +9,9 @@ test: build/alang
 	./build/alang <test/003_fizzbuzz.als
 	./build/alang <test/004_eratosthenes.als
 
+build/ast: src/ast.c src/ast.h
+	$(CC) -DMAIN src/ast.c -o build/ast
+
 build/alang: build/alang.yy.c build/alang.tab.c
 	$(CC) -DYYERROR_VERBOSE $^ -o $@ -l fl -l y
 
