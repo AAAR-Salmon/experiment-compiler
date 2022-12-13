@@ -13,7 +13,7 @@ build/ast: src/ast.c src/ast.h
 	$(CC) -DMAIN src/ast.c -o build/ast
 
 build/alang: build/alang.yy.c build/alang.tab.c build/ast.o
-	$(CC) -DYYERROR_VERBOSE $^ -o $@ -l fl -l y
+	$(CC) -DYYERROR_VERBOSE $^ -o $@ -Isrc -l fl -l y
 
 build/alang.yy.c: src/alang.l
 	$(LEX) -o $@ $<

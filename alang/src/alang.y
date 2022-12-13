@@ -1,15 +1,23 @@
 %{
+#include "ast.h"
 #include "alang.tab.h"
 extern int yylex();
 extern int yyerror();
 %}
+
+%union {
+  AstNode *ast;
+  char *str;
+  int val;
+}
 
 %token DEFINE ARRAY WHILE IF ELSE
 %token SEMICORON
 %token LBRACKET RBRACKET LPAREN RPAREN LBRACE RBRACE
 %token ASSIGN ADD SUB MUL DIV
 %token EQUAL LT GT LEQ GEQ
-%token IDENT NUMBER
+%token<str> IDENT
+%token<val> NUMBER
 %%
 program : declarations statements
         ;

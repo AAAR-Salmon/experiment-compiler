@@ -1,4 +1,6 @@
 %{
+#include <stdlib.h>
+#include "ast.h"
 #include "alang.tab.h"
 %}
 %%
@@ -24,7 +26,7 @@ else    return ELSE;
 ">"     return GT;
 "<="    return LEQ;
 ">="    return GEQ;
-[a-zA-Z][a-zA-Z0-9]*  return IDENT;
-[0-9][0-9]*           return NUMBER;
+[a-zA-Z][a-zA-Z0-9]*  { yylval.str=yytext; return IDENT; }
+[0-9][0-9]*           { yylval.val=atoi(yytext); return NUMBER; }
 [\n\t ] ;
 %%
