@@ -27,12 +27,9 @@ void addChild(AstNode *parent, AstNode *child) {
 
 printNode(AstNode* n) {
   printf(
-      "{id: %p, nodetype: %d, value: %d, child: %p, brother: %p} ",
-      n,
+      "{nodetype: %d, value: %d} ",
       n->nodeType,
-      n->value.value,
-      n->child,
-      n->brother
+      n->value.value
   );
 }
 
@@ -46,7 +43,7 @@ void printTree(AstNode *root) {
   }
 
   printf("( ");
-  printNode(child);
+  printNode(root);
   while (child != NULL) {
     printTree(child);
     child = child->brother;
