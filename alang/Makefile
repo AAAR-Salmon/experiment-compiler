@@ -12,7 +12,7 @@ test: build/alang
 build/ast: src/ast.c src/ast.h
 	$(CC) -DMAIN src/ast.c -o build/ast
 
-build/alang: build/alang.yy.c build/alang.tab.c
+build/alang: build/alang.yy.c build/alang.tab.c build/ast.o
 	$(CC) -DYYERROR_VERBOSE $^ -o $@ -l fl -l y
 
 build/alang.yy.c: src/alang.l
@@ -20,6 +20,9 @@ build/alang.yy.c: src/alang.l
 
 build/alang.tab.c: src/alang.y
 	$(YACC) -d -o $@ $<
+
+build/ast.o: src/ast.c
+	$(CC) -c $^ -o $@
 
 clean:
 	rm -rf build/*
