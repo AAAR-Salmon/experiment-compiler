@@ -24,32 +24,7 @@ void addChild(AstNode *parent, AstNode *child) {
 
 #ifdef MAIN
 #include <stdio.h>
-
-printNode(AstNode* n) {
-  printf(
-      "{nodetype: %d, value: %d} ",
-      n->nodeType,
-      n->value.value
-  );
-}
-
-void printTree(AstNode *root) {
-  if (root == NULL) return;
-
-  AstNode *child = root->child;
-  if (child == NULL) {
-    printNode(root);
-    return;
-  }
-
-  printf("( ");
-  printNode(root);
-  while (child != NULL) {
-    printTree(child);
-    child = child->brother;
-  }
-  printf(")");
-}
+#include "ast_debug.h"
 
 int main(void) {
   union AstValue v1 = { .varName = "foo" };
@@ -66,7 +41,7 @@ int main(void) {
   addChild(p4, p3);
   addChild(p4, p5);
 
-  printTree(p2);
+  printTree(p2, 0);
   printf("\n");
 
   return 0;
