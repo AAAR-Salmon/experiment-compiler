@@ -1,4 +1,6 @@
 #include "ast_debug.h"
+#include "ast.h"
+#include <stdio.h>
 
 void printNode(AstNode* n, int depth) {
   static char ws[100];

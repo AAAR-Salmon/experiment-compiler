@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include "ast.h"
+#include <stdlib.h>
 
 AstNode *createNode(enum AstNodeType t, union AstValue v) {
   AstNode *n = malloc(sizeof(AstNode));
