@@ -9,10 +9,10 @@ test: build/alang
 	./build/alang <test/003_fizzbuzz.als
 	./build/alang <test/004_eratosthenes.als
 
-build/ast: src/ast.c src/ast.h
-	$(CC) -DMAIN src/ast.c -o build/ast
+build/ast: src/ast.c src/ast.h build/ast_debug.o
+	$(CC) -DMAIN src/ast.c build/ast_debug.o -o build/ast
 
-build/alang: build/alang.yy.c build/alang.tab.c build/ast.o
+build/alang: build/alang.yy.c build/alang.tab.c build/ast.o build/ast_debug.o
 	$(CC) -DYYERROR_VERBOSE $^ -o $@ -Isrc -l fl -l y
 
 build/alang.yy.c: src/alang.l
@@ -23,6 +23,9 @@ build/alang.tab.c: src/alang.y
 
 build/ast.o: src/ast.c
 	$(CC) -c $^ -o $@
+
+build/ast_debug.o: src/ast_debug.c src/ast_debug.h
+	$(CC) -c src/ast_debug.c -o $@
 
 clean:
 	rm -rf build/*
