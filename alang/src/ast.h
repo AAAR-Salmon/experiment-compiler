@@ -39,5 +39,6 @@ typedef struct _AstNode {
 
 AstNode *createNode(enum AstNodeType t, union AstValue v);
 void addChild(AstNode *parent, AstNode *child);
+void mergeChildren(AstNode *dst, AstNode *src);
 
 #endif

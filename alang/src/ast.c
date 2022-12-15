@@ -22,6 +22,19 @@ void addChild(AstNode *parent, AstNode *child) {
   n->brother = child;
 }
 
+void mergeChildren(AstNode *dst, AstNode *src) {
+  if (dst->child == NULL) {
+    dst->child = src->child;
+    return;
+  }
+
+  AstNode *last = dst->child;
+  while (last->brother != NULL) {
+    last = last->brother;
+  }
+  last->brother = src->child;
+}
+
 #ifdef MAIN
 #include <stdio.h>
 #include "ast_debug.h"
