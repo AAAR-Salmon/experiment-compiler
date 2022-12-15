@@ -7,8 +7,8 @@ extern int yyerror();
 
 %union {
   AstNode *ast;
-  char *str;
-  int val;
+  char *sval;
+  int ival;
 }
 
 %token DEFINE ARRAY WHILE IF ELSE
@@ -16,8 +16,8 @@ extern int yyerror();
 %token LBRACKET RBRACKET LPAREN RPAREN LBRACE RBRACE
 %token ASSIGN ADD SUB MUL DIV
 %token EQUAL LT GT LEQ GEQ
-%token<str> IDENT
-%token<val> NUMBER
+%token<sval> IDENT
+%token<ival> NUMBER
 %%
 program : declarations statements
         ;

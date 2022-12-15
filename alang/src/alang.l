@@ -31,9 +31,9 @@ else    return ELSE;
   char *varName = malloc(sizeof(char) * (yyleng+1));
   strncpy(varName, yytext, yyleng);
   varName[yyleng] = '\0';
-  yylval.str = varName;
+  yylval.sval = varName;
   return IDENT;
 }
-[0-9][0-9]*           { yylval.val=atoi(yytext); return NUMBER; }
+[0-9][0-9]*   { yylval.ival=atoi(yytext); return NUMBER; }
 [\n\t ] ;
 %%
