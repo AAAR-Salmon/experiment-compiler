@@ -23,6 +23,7 @@ else    return ELSE;
 "*"     return MUL;
 "/"     return DIV;
 "=="    return EQUAL;
+"!="    return NEQ;
 "<"     return LT;
 ">"     return GT;
 "<="    return LEQ;

@@ -37,24 +37,30 @@ void printTree(AstNode *root, int depth) {
 
 char *nodeTypeToString(enum AstNodeType t) {
   switch (t) {
-    case AST_PROGRAM:       return "PROGRAM";
-    case AST_DECLS:         return "DECLS";
-    case AST_DECL_VAR:      return "DECL_VAR";
-    case AST_DECL_ARRAY:    return "DECL_ARRAY";
-    case AST_STMTS:         return "STMTS";
-    case AST_STMT:          return "STMT";
-    case AST_ASSIGN_STMT:   return "ASSIGN_STMT";
-    case AST_EXPR_STMT:     return "EXPR_STMT";
-    case AST_EXPR:          return "EXPR";
-    case AST_TERM:          return "TERM";
-    case AST_FACTOR:        return "FACTOR";
-    case AST_LOOP_STMT:     return "LOOP_STMT";
-    case AST_BRANCH_STMT:   return "BRANCH_STMT";
-    case AST_COND_EXPR:     return "COND_EXPR";
-    case AST_IDENT:         return "IDENT";
-    case AST_ADD:           return "ADD";
-    case AST_SUB:           return "SUB";
-    case AST_NUMBER:        return "NUMBER";
+    case AST_PROGRAM:       return "AST_PROGRAM";
+    case AST_DECLS:         return "AST_DECLS";
+    case AST_DECL_VAR:      return "AST_DECL_VAR";
+    case AST_DECL_ARRAY:    return "AST_DECL_ARRAY";
+    case AST_STMTS:         return "AST_STMTS";
+    case AST_STMT:          return "AST_STMT";
+    case AST_ASSIGN_STMT:   return "AST_ASSIGN_STMT";
+    case AST_REFERENCE:     return "AST_REFERENCE";
+    case AST_WHILE:         return "AST_WHILE";
+    case AST_IF:            return "AST_IF";
+    case AST_IF_ELSE:       return "AST_IF_ELSE";
+    case AST_COND_EXPR:     return "AST_COND_EXPR";
+    case AST_IDENT:         return "AST_IDENT";
+    case AST_ADD:           return "AST_ADD";
+    case AST_SUB:           return "AST_SUB";
+    case AST_MUL:           return "AST_MUL";
+    case AST_DIV:           return "AST_DIV";
+    case AST_NUMBER:        return "AST_NUMBER";
+    case AST_EQUAL:         return "AST_EQUAL";
+    case AST_NEQ:           return "AST_NEQ";
+    case AST_LT:            return "AST_LT";
+    case AST_LEQ:           return "AST_LEQ";
+    case AST_GT:            return "AST_GT";
+    case AST_GEQ:           return "AST_GEQ";
     default:                return "!!UNKNOWN!!";
   }
 }
