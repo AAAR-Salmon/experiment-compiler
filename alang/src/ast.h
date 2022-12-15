@@ -23,21 +23,17 @@ enum AstNodeType {
   AST_NUMBER
 };
 
-union AstValue {
-  char *varName;
-  int value;
-};
-
-union AstValue AST_VALUE_NULL;
-
 typedef struct _AstNode {
   enum AstNodeType nodeType;
-  union AstValue value;
+  int ivalue;
+  char *svalue;
   struct _AstNode *child;
   struct _AstNode *brother;
 } AstNode;
 
-AstNode *createNode(enum AstNodeType t, union AstValue v);
+AstNode *createVoidNode(enum AstNodeType t);
+AstNode *createIntNode(enum AstNodeType t, int ivalue);
+AstNode *createStrNode(enum AstNodeType t, char *svalue);
 void addChild(AstNode *parent, AstNode *child);
 void mergeChildren(AstNode *dst, AstNode *src);
 
