@@ -1,5 +1,6 @@
 %{
 #include <stdlib.h>
+#include <string.h>
 #include "ast.h"
 #include "alang.tab.h"
 %}
@@ -26,7 +27,13 @@ else    return ELSE;
 ">"     return GT;
 "<="    return LEQ;
 ">="    return GEQ;
-[a-zA-Z][a-zA-Z0-9]*  { yylval.str=yytext; return IDENT; }
+[a-zA-Z][a-zA-Z0-9]*  {
+  char *varName = malloc(sizeof(char) * (yyleng+1));
+  strncpy(varName, yytext, yyleng);
+  varName[yyleng] = '\0';
+  yylval.str = varName;
+  return IDENT;
+}
 [0-9][0-9]*           { yylval.val=atoi(yytext); return NUMBER; }
 [\n\t ] ;
 %%
