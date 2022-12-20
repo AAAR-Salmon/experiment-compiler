@@ -10,7 +10,7 @@ test: build/alang
 	./build/alang <test/004_eratosthenes.als
 
 build/ast: src/ast.c src/ast.h build/ast_debug.o
-	$(CC) -DMAIN src/ast.c build/ast_debug.o -o build/ast
+	$(CC) -DMAIN src/ast.c build/ast_debug.o -o build/ast -g
 
 build/alang: build/alang.yy.c build/alang.tab.c build/ast.o build/ast_debug.o build/codegen.o build/symbol_table.o
 	$(CC) -DYYERROR_VERBOSE $^ -o $@ -Isrc -l fl -l y -g
@@ -22,10 +22,10 @@ build/alang.tab.c: src/alang.y
 	$(YACC) -d -o $@ $<
 
 build/ast.o: src/ast.c
-	$(CC) -c $^ -o $@
+	$(CC) -c $^ -o $@ -g
 
 build/ast_debug.o: src/ast_debug.c src/ast_debug.h
-	$(CC) -c src/ast_debug.c -o $@
+	$(CC) -c src/ast_debug.c -o $@ -g
 
 build/codegen.o: src/codegen.c src/codegen.h
 	$(CC) -c src/codegen.c -o $@ -g
