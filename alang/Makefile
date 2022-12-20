@@ -27,5 +27,8 @@ build/ast.o: src/ast.c
 build/ast_debug.o: src/ast_debug.c src/ast_debug.h
 	$(CC) -c src/ast_debug.c -o $@
 
+build/symbol_table.o: src/symbol_table.c src/symbol_table.h
+	$(CC) -c src/symbol_table.c -o $@ -g
+
 clean:
 	rm -rf build/*
