@@ -215,7 +215,6 @@ int main(void) {
     yyerror();
     return 1;
   }
-  printTree(root, 0);
 
   codegen(stdout, root);
   return 0;
