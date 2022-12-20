@@ -206,7 +206,9 @@ cond_expr:
   }
 ;
 %%
+#include <stdio.h>
 #include "ast_debug.h"
+#include "codegen.h"
 
 int main(void) {
   if (yyparse()) {
@@ -215,5 +217,6 @@ int main(void) {
   }
   printTree(root, 0);
 
+  codegen(stdout, root);
   return 0;
 }
