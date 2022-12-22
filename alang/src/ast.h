@@ -13,7 +13,6 @@ enum AstNodeType {
   AST_WHILE,
   AST_IF,
   AST_IF_ELSE,
-  AST_COND_EXPR,
   AST_IDENT,
   AST_ADD,
   AST_SUB,

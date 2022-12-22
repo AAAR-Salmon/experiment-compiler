@@ -48,7 +48,6 @@ char *nodeTypeToString(enum AstNodeType t) {
     case AST_WHILE:         return "AST_WHILE";
     case AST_IF:            return "AST_IF";
     case AST_IF_ELSE:       return "AST_IF_ELSE";
-    case AST_COND_EXPR:     return "AST_COND_EXPR";
     case AST_IDENT:         return "AST_IDENT";
     case AST_ADD:           return "AST_ADD";
     case AST_SUB:           return "AST_SUB";
