@@ -207,3 +207,7 @@ void write_dot_inst_word(int data) {
 void write_dot_inst_byte(char data) {
   fprintf(fp_out, "\t.byte   %d\n", data);
 }
+
+void write_pseudo_inst_move(P32Register dest, P32Register src) {
+  write_inst_and(dest, src, src);
+}

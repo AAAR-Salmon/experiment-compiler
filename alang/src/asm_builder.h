@@ -480,4 +480,12 @@ void write_dot_inst_word(int data);
  */
 void write_dot_inst_byte(char data);
 
+/**
+ * @brief copy value from `src` to `dest`
+ *
+ * @param dest
+ * @param src
+ */
+void write_pseudo_inst_move(P32Register dest, P32Register src);
+
 #endif
