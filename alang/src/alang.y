@@ -210,12 +210,16 @@ cond_expr:
 #include "ast_debug.h"
 #include "codegen.h"
 
+extern FILE *fp_out;
+
 int main(void) {
   if (yyparse()) {
     yyerror();
     return 1;
   }
 
-  codegen(stdout, root);
+  fp_out = stdout;
+
+  codegenProgram(stdout, root);
   return 0;
 }

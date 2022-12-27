@@ -12,7 +12,7 @@ test: build/alang
 build/ast: src/ast.c src/ast.h build/ast_debug.o
 	$(CC) -DMAIN src/ast.c build/ast_debug.o -o build/ast -g
 
-build/alang: build/alang.yy.c build/alang.tab.c build/ast.o build/ast_debug.o build/codegen.o build/symbol_table.o
+build/alang: build/alang.yy.c build/alang.tab.c build/ast.o build/ast_debug.o build/codegen.o build/symbol_table.o build/asm_builder.o
 	$(CC) -DYYERROR_VERBOSE $^ -o $@ -Isrc -l fl -l y -g
 
 build/alang.yy.c: src/alang.l
@@ -32,6 +32,9 @@ build/codegen.o: src/codegen.c src/codegen.h
 
 build/symbol_table.o: src/symbol_table.c src/symbol_table.h
 	$(CC) -c src/symbol_table.c -o $@ -g
+
+build/asm_builder.o: src/asm_builder.c src/asm_builder.h
+	$(CC) -c src/asm_builder.c -o $@ -g
 
 clean:
 	rm -rf build/*
