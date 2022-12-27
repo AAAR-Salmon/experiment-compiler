@@ -9,6 +9,7 @@ test: build/alang
 	./build/alang <test/003_fizzbuzz.als >build/003_fizzbuzz.s
 	./build/alang <test/004_eratosthenes.als >build/004_eratpsthenes.s
 	./build/alang <test/010_varindex_assign.als >build/010_varindex_assign.s
+	./build/alang <test/011_leq_op.als >build/011_leq_op.s
 
 build/ast: src/ast.c src/ast.h build/ast_debug.o
 	$(CC) -DMAIN src/ast.c build/ast_debug.o -o build/ast -g
