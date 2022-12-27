@@ -4,10 +4,10 @@ YACC = bison
 .PHONY: test clean
 
 test: build/alang
-	./build/alang <test/001_sum.als
-	./build/alang <test/002_fact.als
-	./build/alang <test/003_fizzbuzz.als
-	./build/alang <test/004_eratosthenes.als
+	./build/alang <test/001_sum.als >build/001_sum.s
+	./build/alang <test/002_fact.als >build/002_fact.s
+	./build/alang <test/003_fizzbuzz.als >build/003_fizzbuzz.s
+	./build/alang <test/004_eratosthenes.als >build/004_eratpsthenes.s
 
 build/ast: src/ast.c src/ast.h build/ast_debug.o
 	$(CC) -DMAIN src/ast.c build/ast_debug.o -o build/ast -g
