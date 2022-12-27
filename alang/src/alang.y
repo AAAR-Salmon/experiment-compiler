@@ -220,6 +220,6 @@ int main(void) {
 
   fp_out = stdout;
 
-  codegenProgram(stdout, root);
+  codegenProgram(root);
   return 0;
 }
