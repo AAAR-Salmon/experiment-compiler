@@ -132,7 +132,7 @@ void write_inst_beq(P32Register src1, P32Register src2, char *label) {
 }
 
 void write_inst_bne(P32Register src1, P32Register src2, char *label) {
-  fprintf(fp_out, "\tbeq     $%d, $%d, %s\n", src1, src2, label);
+  fprintf(fp_out, "\tbne     $%d, $%d, %s\n", src1, src2, label);
 }
 
 void write_inst_j(char *label) {
