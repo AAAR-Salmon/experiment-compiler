@@ -43,7 +43,7 @@ typedef enum {
  * @param src1
  * @param src2
  */
-void add(P32Register dest, P32Register src1, P32Register src2);
+void write_inst_add(P32Register dest, P32Register src1, P32Register src2);
 
 /**
  * @brief add a register and a immediate (raises overflow exception)
@@ -52,7 +52,7 @@ void add(P32Register dest, P32Register src1, P32Register src2);
  * @param src1
  * @param immediate as signed 16bit integer
  */
-void addi(P32Register dest, P32Register src1, short immediate);
+void write_inst_addi(P32Register dest, P32Register src1, short immediate);
 
 /**
  * @brief add two registers
@@ -61,7 +61,7 @@ void addi(P32Register dest, P32Register src1, short immediate);
  * @param src1
  * @param src2
  */
-void addu(P32Register dest, P32Register src1, P32Register src2);
+void write_inst_addu(P32Register dest, P32Register src1, P32Register src2);
 
 /**
  * @brief add a register and a immediate
@@ -70,7 +70,7 @@ void addu(P32Register dest, P32Register src1, P32Register src2);
  * @param src1
  * @param immediate as signed 16bit integer
  */
-void addiu(P32Register dest, P32Register src1, short immediate);
+void write_inst_addiu(P32Register dest, P32Register src1, short immediate);
 
 /**
  * @brief subtract a register from a register (raises overflow exception)
@@ -79,7 +79,7 @@ void addiu(P32Register dest, P32Register src1, short immediate);
  * @param src1
  * @param src2
  */
-void sub(P32Register dest, P32Register src1, P32Register src2);
+void write_inst_sub(P32Register dest, P32Register src1, P32Register src2);
 
 /**
  * @brief subtract a register from a register
@@ -88,7 +88,7 @@ void sub(P32Register dest, P32Register src1, P32Register src2);
  * @param src1
  * @param src2
  */
-void subu(P32Register dest, P32Register src1, P32Register src2);
+void write_inst_subu(P32Register dest, P32Register src1, P32Register src2);
 
 /**
  * @brief multiply two registers (as signed)
@@ -99,7 +99,7 @@ void subu(P32Register dest, P32Register src1, P32Register src2);
  * @param src1 as signed 32bit integer
  * @param src2 as signed 32bit integer
  */
-void mult(P32Register src1, P32Register src2);
+void write_inst_mult(P32Register src1, P32Register src2);
 
 /**
  * @brief multiply two registers (as unsigned)
@@ -110,7 +110,7 @@ void mult(P32Register src1, P32Register src2);
  * @param src1 as unsigned 32bit integer
  * @param src2 as unsigned 32bit integer
  */
-void multu(P32Register src1, P32Register src2);
+void write_inst_multu(P32Register src1, P32Register src2);
 
 /**
  * @brief divide a register by a register (as signed)
@@ -122,7 +122,7 @@ void multu(P32Register src1, P32Register src2);
  * @param src1 as signed 32bit integer
  * @param src2 as signed 32bit integer
  */
-void div(P32Register src1, P32Register src2);
+void write_inst_div(P32Register src1, P32Register src2);
 
 /**
  * @brief divide a register by a register (as unsigned)
@@ -134,7 +134,7 @@ void div(P32Register src1, P32Register src2);
  * @param src1 as unsigned 32bit integer
  * @param src2 as unsigned 32bit integer
  */
-void divu(P32Register src1, P32Register src2);
+void write_inst_divu(P32Register src1, P32Register src2);
 
 /**
  * @brief logical and bitwise among two registers
@@ -143,7 +143,7 @@ void divu(P32Register src1, P32Register src2);
  * @param src1
  * @param src2
  */
-void and (P32Register dest, P32Register src1, P32Register src2);
+void write_inst_and(P32Register dest, P32Register src1, P32Register src2);
 
 /**
  * @brief logical and bitwise between a register and a immediate
@@ -152,7 +152,7 @@ void and (P32Register dest, P32Register src1, P32Register src2);
  * @param src1
  * @param immediate as unsigned 16bit integer
  */
-void andi(P32Register dest, P32Register src1, unsigned short immediate);
+void write_inst_andi(P32Register dest, P32Register src1, unsigned short immediate);
 
 /**
  * @brief logical or bitwise among two registers
@@ -161,7 +161,7 @@ void andi(P32Register dest, P32Register src1, unsigned short immediate);
  * @param src1
  * @param src2
  */
-void or (P32Register dest, P32Register src1, P32Register src2);
+void write_inst_or(P32Register dest, P32Register src1, P32Register src2);
 
 /**
  * @brief logical or bitwise between a register and a immediate
@@ -170,7 +170,7 @@ void or (P32Register dest, P32Register src1, P32Register src2);
  * @param src1
  * @param immediate as unsigned 16bit integer
  */
-void ori(P32Register dest, P32Register src1, unsigned short immediate);
+void write_inst_ori(P32Register dest, P32Register src1, unsigned short immediate);
 
 /**
  * @brief logical exclusive or bitwise among two registers
@@ -179,7 +179,7 @@ void ori(P32Register dest, P32Register src1, unsigned short immediate);
  * @param src1
  * @param src2
  */
-void xor (P32Register dest, P32Register src1, P32Register src2);
+void write_inst_xor(P32Register dest, P32Register src1, P32Register src2);
 
 /**
  * @brief logical exclusive or bitwise between a register and a immediate
@@ -188,7 +188,7 @@ void xor (P32Register dest, P32Register src1, P32Register src2);
  * @param src1
  * @param immediate as unsigned 16bit integer
  */
-void xori(P32Register dest, P32Register src1, unsigned short immediate);
+void write_inst_xori(P32Register dest, P32Register src1, unsigned short immediate);
 
 /**
  * @brief logical nor bitwise among two registers
@@ -197,7 +197,7 @@ void xori(P32Register dest, P32Register src1, unsigned short immediate);
  * @param src1
  * @param src2
  */
-void nor(P32Register dest, P32Register src1, P32Register src2);
+void write_inst_nor(P32Register dest, P32Register src1, P32Register src2);
 
 /**
  * @brief shift logically a register to left by a constant
@@ -206,7 +206,7 @@ void nor(P32Register dest, P32Register src1, P32Register src2);
  * @param src1
  * @param shamt 5bit integer
  */
-void sll(P32Register dest, P32Register src1, unsigned int shamt);
+void write_inst_sll(P32Register dest, P32Register src1, unsigned int shamt);
 
 /**
  * @brief shift logically a register to right by a constant
@@ -215,7 +215,7 @@ void sll(P32Register dest, P32Register src1, unsigned int shamt);
  * @param src1
  * @param shamt 5bit integer
  */
-void srl(P32Register dest, P32Register src1, unsigned int shamt);
+void write_inst_srl(P32Register dest, P32Register src1, unsigned int shamt);
 
 /**
  * @brief shift arithmetically a register to right by a constant
@@ -224,7 +224,7 @@ void srl(P32Register dest, P32Register src1, unsigned int shamt);
  * @param src1
  * @param shamt 5bit integer
  */
-void sra(P32Register dest, P32Register src1, unsigned int shamt);
+void write_inst_sra(P32Register dest, P32Register src1, unsigned int shamt);
 
 /**
  * @brief shift logically a register to left by a register
@@ -233,7 +233,7 @@ void sra(P32Register dest, P32Register src1, unsigned int shamt);
  * @param src1
  * @param src2 5bit integer (27bit from MSB is ignored)
  */
-void sllv(P32Register dest, P32Register src1, P32Register src2);
+void write_inst_sllv(P32Register dest, P32Register src1, P32Register src2);
 
 /**
  * @brief shift logically a register to right by a register
@@ -242,7 +242,7 @@ void sllv(P32Register dest, P32Register src1, P32Register src2);
  * @param src1
  * @param src2 5bit integer (27bit from MSB is ignored)
  */
-void srlv(P32Register dest, P32Register src1, P32Register src2);
+void write_inst_srlv(P32Register dest, P32Register src1, P32Register src2);
 
 /**
  * @brief shift arithmetically a register to right by a register
@@ -251,7 +251,7 @@ void srlv(P32Register dest, P32Register src1, P32Register src2);
  * @param src1
  * @param src2 5bit integer (27bit from MSB is ignored)
  */
-void srav(P32Register dest, P32Register src1, P32Register src2);
+void write_inst_srav(P32Register dest, P32Register src1, P32Register src2);
 
 /**
  * @brief set whether a register is less than a register (as signed)
@@ -260,7 +260,7 @@ void srav(P32Register dest, P32Register src1, P32Register src2);
  * @param src1 as signed 32bit integer
  * @param src2 as signed 32bit integer
  */
-void slt(P32Register dest, P32Register src1, P32Register src2);
+void write_inst_slt(P32Register dest, P32Register src1, P32Register src2);
 
 /**
  * @brief set whether a register is less than a register (as unsigned)
@@ -269,7 +269,7 @@ void slt(P32Register dest, P32Register src1, P32Register src2);
  * @param src1 as unsigned 32bit integer
  * @param src2 as unsigned 32bit integer
  */
-void sltu(P32Register dest, P32Register src1, P32Register src2);
+void write_inst_sltu(P32Register dest, P32Register src1, P32Register src2);
 
 /**
  * @brief set whether a register is less than a immediate (as signed)
@@ -278,7 +278,7 @@ void sltu(P32Register dest, P32Register src1, P32Register src2);
  * @param src1 as signed 32bit integer
  * @param immediate as signed 16bit integer
  */
-void slti(P32Register dest, P32Register src1, short immediate);
+void write_inst_slti(P32Register dest, P32Register src1, short immediate);
 
 /**
  * @brief set whether a register is less than a immediate (as unsigned)
@@ -287,7 +287,7 @@ void slti(P32Register dest, P32Register src1, short immediate);
  * @param src1 as unsigned 32bit integer
  * @param immediate as **signed** 16bit integer
  */
-void sltiu(P32Register dest, P32Register src1, short immediate);
+void write_inst_sltiu(P32Register dest, P32Register src1, short immediate);
 
 /**
  * @brief load a signed byte value in memory to a register
@@ -298,7 +298,7 @@ void sltiu(P32Register dest, P32Register src1, short immediate);
  * @param base
  * @param offset
  */
-void lb(P32Register dest, P32Register base, short offset);
+void write_inst_lb(P32Register dest, P32Register base, short offset);
 
 /**
  * @brief load a 32bit integer in memory to a register
@@ -309,7 +309,7 @@ void lb(P32Register dest, P32Register base, short offset);
  * @param base
  * @param offset
  */
-void lw(P32Register dest, P32Register base, short offset);
+void write_inst_lw(P32Register dest, P32Register base, short offset);
 
 /**
  * @brief store a byte value to memory
@@ -318,7 +318,7 @@ void lw(P32Register dest, P32Register base, short offset);
  * @param base
  * @param offset
  */
-void sb(P32Register src, P32Register base, short offset);
+void write_inst_sb(P32Register src, P32Register base, short offset);
 
 /**
  * @brief store a 32bit integer to memory
@@ -327,7 +327,7 @@ void sb(P32Register src, P32Register base, short offset);
  * @param base
  * @param offset
  */
-void sw(P32Register src, P32Register base, short offset);
+void write_inst_sw(P32Register src, P32Register base, short offset);
 
 /**
  * @brief jump to label if `src1 == src2`
@@ -338,7 +338,7 @@ void sw(P32Register src, P32Register base, short offset);
  * @param src2
  * @param label
  */
-void beq(P32Register src1, P32Register src2, char *label);
+void write_inst_beq(P32Register src1, P32Register src2, char *label);
 
 /**
  * @brief jump to label if `src1 != src2`
@@ -349,7 +349,7 @@ void beq(P32Register src1, P32Register src2, char *label);
  * @param src2
  * @param label
  */
-void bne(P32Register src1, P32Register src2, char *label);
+void write_inst_bne(P32Register src1, P32Register src2, char *label);
 
 /**
  * @brief jump to label
@@ -358,7 +358,7 @@ void bne(P32Register src1, P32Register src2, char *label);
  *
  * @param label
  */
-void j(char *label);
+void write_inst_j(char *label);
 
 /**
  * @brief jump to label and store caller address to $ra
@@ -367,7 +367,7 @@ void j(char *label);
  *
  * @param label
  */
-void jal(char *label);
+void write_inst_jal(char *label);
 
 /**
  * @brief jump to stored address
@@ -376,7 +376,7 @@ void jal(char *label);
  *
  * @param target
  */
-void jr(P32Register target);
+void write_inst_jr(P32Register target);
 
 /**
  * @brief jump to stored address ands store caller address to $ra
@@ -385,7 +385,7 @@ void jr(P32Register target);
  *
  * @param target
  */
-void jalr(P32Register target);
+void write_inst_jalr(P32Register target);
 
 /**
  * @brief store immediate to upper bits of register
@@ -393,25 +393,25 @@ void jalr(P32Register target);
  * @param dest destination to store `immediate << 16`
  * @param immediate as unsigned 16bit integer
  */
-void lui(P32Register dest, unsigned short immediate);
+void write_inst_lui(P32Register dest, unsigned short immediate);
 
 /**
  * @brief move the value from the special register hi
  *
  * @param dest destination to store `hi`
  */
-void mfhi(P32Register dest);
+void write_inst_mfhi(P32Register dest);
 
 /**
  * @brief move the value from the special register lo
  *
  * @param dest destination to store `lo`
  */
-void mflo(P32Register dest);
+void write_inst_mflo(P32Register dest);
 
 /**
  * @brief jump to syscall handler
  */
-void syscall();
+void write_inst_syscall();
 
 #endif
