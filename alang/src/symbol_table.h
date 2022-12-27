@@ -12,5 +12,6 @@ SymbolTable* createSymbolTable();
 int hasSymbol(SymbolTable *table, char *name);
 SymbolTable* searchSymbol(SymbolTable *table, char *name);
 SymbolTable* addSymbol(SymbolTable *table, char *name, int size);
+int sizeOfSymbolTable(SymbolTable *table);
 
 #endif

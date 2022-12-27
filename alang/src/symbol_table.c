@@ -39,3 +39,10 @@ SymbolTable* addSymbol(SymbolTable *table, char *name, int size) {
   symbol->next = table;
   return symbol;
 }
+
+int sizeOfSymbolTable(SymbolTable *table) {
+  if (table == NULL) {
+    return 0;
+  }
+  return table->size + sizeOfSymbolTable(table->next);
+}
