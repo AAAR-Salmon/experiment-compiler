@@ -44,7 +44,7 @@ void write_inst_and(P32Register dest, P32Register src1, P32Register src2) {
   fprintf(fp_out, "\tand     $%d, $%d, $%d\n", dest, src1, src2);
 }
 
-void write_inst_andi(P32Register dest, P32Register src1, unsigned short immediate) {
+void write_inst_andi(P32Register dest, P32Register src1, short immediate) {
   fprintf(fp_out, "\tandi    $%d, $%d, %#04x\n", dest, src1, immediate);
 }
 
@@ -52,7 +52,7 @@ void write_inst_or(P32Register dest, P32Register src1, P32Register src2) {
   fprintf(fp_out, "\tor      $%d, $%d, $%d\n", dest, src1, src2);
 }
 
-void write_inst_ori(P32Register dest, P32Register src1, unsigned short immediate) {
+void write_inst_ori(P32Register dest, P32Register src1, short immediate) {
   fprintf(fp_out, "\tori     $%d, $%d, %#04x\n", dest, src1, immediate);
 }
 
@@ -60,7 +60,7 @@ void write_inst_xor(P32Register dest, P32Register src1, P32Register src2) {
   fprintf(fp_out, "\txor     $%d, $%d, $%d\n", dest, src1, src2);
 }
 
-void write_inst_xori(P32Register dest, P32Register src1, unsigned short immediate) {
+void write_inst_xori(P32Register dest, P32Register src1, short immediate) {
   fprintf(fp_out, "\txori    $%d, $%d, %#04x\n", dest, src1, immediate);
 }
 
@@ -151,8 +151,8 @@ void write_inst_jalr(P32Register target) {
   fprintf(fp_out, "\tjalr    $%d\n", target);
 }
 
-void write_inst_lui(P32Register dest, unsigned short immediate) {
-  fprintf(fp_out, "\tlui     $%d, %u\n", dest, immediate);
+void write_inst_lui(P32Register dest, short immediate) {
+  fprintf(fp_out, "\tlui     $%d, %d\n", dest, immediate);
 }
 
 void write_inst_mfhi(P32Register dest) {

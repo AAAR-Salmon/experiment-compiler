@@ -152,7 +152,7 @@ void write_inst_and(P32Register dest, P32Register src1, P32Register src2);
  * @param src1
  * @param immediate as unsigned 16bit integer
  */
-void write_inst_andi(P32Register dest, P32Register src1, unsigned short immediate);
+void write_inst_andi(P32Register dest, P32Register src1, short immediate);
 
 /**
  * @brief logical or bitwise among two registers
@@ -170,7 +170,7 @@ void write_inst_or(P32Register dest, P32Register src1, P32Register src2);
  * @param src1
  * @param immediate as unsigned 16bit integer
  */
-void write_inst_ori(P32Register dest, P32Register src1, unsigned short immediate);
+void write_inst_ori(P32Register dest, P32Register src1, short immediate);
 
 /**
  * @brief logical exclusive or bitwise among two registers
@@ -188,7 +188,7 @@ void write_inst_xor(P32Register dest, P32Register src1, P32Register src2);
  * @param src1
  * @param immediate as unsigned 16bit integer
  */
-void write_inst_xori(P32Register dest, P32Register src1, unsigned short immediate);
+void write_inst_xori(P32Register dest, P32Register src1, short immediate);
 
 /**
  * @brief logical nor bitwise among two registers
@@ -393,7 +393,7 @@ void write_inst_jalr(P32Register target);
  * @param dest destination to store `immediate << 16`
  * @param immediate as unsigned 16bit integer
  */
-void write_inst_lui(P32Register dest, unsigned short immediate);
+void write_inst_lui(P32Register dest, short immediate);
 
 /**
  * @brief move the value from the special register hi
