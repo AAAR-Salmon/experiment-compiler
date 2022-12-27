@@ -221,7 +221,7 @@ void codegenCondExpr(AstNode *n) {
     case AST_LEQ:
       /* $v1 <= $v0  ->  !($v0 < $v1) */
       write_inst_slt(REG_V0, REG_V0, REG_V1);
-      write_inst_nor(REG_V0, REG_V0, REG_V0);
+      write_inst_sltiu(REG_V0, REG_V0, 1);
       break;
     case AST_GT:
       /* $v1 > $v0  ->  $v0 < $v1 */
@@ -230,7 +230,7 @@ void codegenCondExpr(AstNode *n) {
     case AST_GEQ:
       /* $v1 >= $v0  ->  !($v1 < $v0) */
       write_inst_slt(REG_V0, REG_V1, REG_V0);
-      write_inst_nor(REG_V0, REG_V0, REG_V0);
+      write_inst_sltiu(REG_V0, REG_V0, 1);
       break;
   }
 }
