@@ -176,6 +176,10 @@ void write_pseudo_inst_li(P32Register dest, int immediate) {
   write_inst_ori(dest, dest, (short)(immediate & 0xffff));
 }
 
+void write_pseudo_inst_la(P32Register dest, char *variable) {
+  fprintf(fp_out, "\tla      $%d, %s\n", dest, variable);
+}
+
 void write_pseudo_inst_nop() {
   write_inst_sll(REG_ZERO, REG_ZERO, 0u);
 }

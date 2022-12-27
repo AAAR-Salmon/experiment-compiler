@@ -424,10 +424,18 @@ void write_label(char *label);
 /**
  * @brief store immediate to register
  *
- * @param dest
+ * @param dest destination to store `immediate`
  * @param immediate as 32bit immediate
  */
 void write_pseudo_inst_li(P32Register dest, int immediate);
+
+/**
+ * @brief store value of variable to register
+ *
+ * @param dest destination to store the value of `variable`
+ * @param variable
+ */
+void write_pseudo_inst_la(P32Register dest, char *variable);
 
 /**
  * @brief do nothing
