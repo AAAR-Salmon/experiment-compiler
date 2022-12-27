@@ -415,6 +415,13 @@ void write_inst_mflo(P32Register dest);
 void write_inst_syscall();
 
 /**
+ * @brief label address
+ *
+ * @param label
+ */
+void write_label(char *label);
+
+/**
  * @brief store immediate to register
  *
  * @param dest

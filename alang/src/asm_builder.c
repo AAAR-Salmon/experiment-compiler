@@ -167,6 +167,10 @@ void write_inst_syscall() {
   fprintf(fp_out, "\tsyscall\n");
 }
 
+void write_label(char *label) {
+  fprintf(fp_out, "%s:\n", label);
+}
+
 void write_pseudo_inst_li(P32Register dest, int immediate) {
   write_inst_lui(dest, (short)(immediate >> 16 & 0xffff));
   write_inst_ori(dest, dest, (short)(immediate & 0xffff));
