@@ -172,8 +172,7 @@ void write_label(char *label) {
 }
 
 void write_pseudo_inst_li(P32Register dest, int immediate) {
-  write_inst_lui(dest, (short)(immediate >> 16 & 0xffff));
-  write_inst_ori(dest, dest, (short)(immediate & 0xffff));
+  fprintf(fp_out, "\tli      $%d, %d\n", dest, immediate);
 }
 
 void write_pseudo_inst_la(P32Register dest, char *variable) {
@@ -181,7 +180,7 @@ void write_pseudo_inst_la(P32Register dest, char *variable) {
 }
 
 void write_pseudo_inst_nop() {
-  write_inst_sll(REG_ZERO, REG_ZERO, 0u);
+  fprintf(fp_out, "\tnop\n");
 }
 
 void write_dot_inst_text() {
