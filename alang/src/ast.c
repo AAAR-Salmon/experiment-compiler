@@ -49,6 +49,18 @@ void mergeChildren(AstNode *dst, AstNode *src) {
   last->brother = src->child;
 }
 
+int countChildrenOfAstNode(AstNode *node) {
+  AstNode *child = node->child;
+  int result = 0;
+
+  while (child != NULL) {
+    result++;
+    child = child->brother;
+  }
+
+  return result;
+}
+
 #ifdef MAIN
 #include <stdio.h>
 #include "ast_debug.h"

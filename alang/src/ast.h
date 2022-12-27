@@ -40,5 +40,6 @@ AstNode *createIntNode(enum AstNodeType t, int ivalue);
 AstNode *createStrNode(enum AstNodeType t, char *svalue);
 void addChild(AstNode *parent, AstNode *child);
 void mergeChildren(AstNode *dst, AstNode *src);
+int countChildrenOfAstNode(AstNode *node);
 
 #endif
