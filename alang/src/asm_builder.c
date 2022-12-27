@@ -166,3 +166,36 @@ void write_inst_mflo(P32Register dest) {
 void write_inst_syscall() {
   fprintf(fp_out, "\tsyscall\n");
 }
+
+void write_pseudo_inst_li(P32Register dest, int immediate) {
+  write_inst_lui(dest, (short)(immediate >> 16 & 0xffff));
+  write_inst_ori(dest, dest, (short)(immediate & 0xffff));
+}
+
+void write_pseudo_inst_nop() {
+  write_inst_sll(REG_ZERO, REG_ZERO, 0u);
+}
+
+void write_dot_inst_text() {
+  fprintf(fp_out, "\t.text\n");
+}
+
+void write_dot_inst_text_with_address(unsigned int addr) {
+  fprintf(fp_out, "\t.text   %#08x\n", addr);
+}
+
+void write_dot_inst_data() {
+  fprintf(fp_out, "\t.data\n");
+}
+
+void write_dot_inst_data_with_address(unsigned int addr) {
+  fprintf(fp_out, "\t.text   %#08x\n", addr);
+}
+
+void write_dot_inst_word(int data) {
+  fprintf(fp_out, "\t.word   %d\n", data);
+}
+
+void write_dot_inst_byte(char data) {
+  fprintf(fp_out, "\t.byte   %d\n", data);
+}

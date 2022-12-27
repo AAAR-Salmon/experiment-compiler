@@ -414,4 +414,55 @@ void write_inst_mflo(P32Register dest);
  */
 void write_inst_syscall();
 
+/**
+ * @brief store immediate to register
+ *
+ * @param dest
+ * @param immediate as 32bit immediate
+ */
+void write_pseudo_inst_li(P32Register dest, int immediate);
+
+/**
+ * @brief do nothing
+ */
+void write_pseudo_inst_nop();
+
+/**
+ * @brief place following instructions text space
+ */
+void write_dot_inst_text();
+
+/**
+ * @brief place following instructions specified addressed space
+ *
+ * @param addr
+ */
+void write_dot_inst_text_with_address(unsigned int addr);
+
+/**
+ * @brief place following allocations data space
+ */
+void write_dot_inst_data();
+
+/**
+ * @brief place following allocations specified addressed space
+ *
+ * @param addr
+ */
+void write_dot_inst_data_with_address(unsigned int addr);
+
+/**
+ * @brief place data of a word
+ *
+ * @param data
+ */
+void write_dot_inst_word(int data);
+
+/**
+ * @brief place data of byte
+ *
+ * @param data
+ */
+void write_dot_inst_byte(char data);
+
 #endif
