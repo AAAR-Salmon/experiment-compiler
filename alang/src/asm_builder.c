@@ -188,7 +188,7 @@ void write_dot_inst_text() {
 }
 
 void write_dot_inst_text_with_address(unsigned int addr) {
-  fprintf(fp_out, "\t.text   %#08x\n", addr);
+  fprintf(fp_out, "\t.text   0x%08x\n", addr);
 }
 
 void write_dot_inst_data() {
@@ -196,7 +196,7 @@ void write_dot_inst_data() {
 }
 
 void write_dot_inst_data_with_address(unsigned int addr) {
-  fprintf(fp_out, "\t.data   %#08x\n", addr);
+  fprintf(fp_out, "\t.data   0x%08x\n", addr);
 }
 
 void write_dot_inst_word(int data) {
