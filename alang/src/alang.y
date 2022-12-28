@@ -134,8 +134,8 @@ term:
     $$ = divNode;
   } | term MOD factor {
     AstNode *modNode = createVoidNode(AST_MOD);
-    addChild(divNode, $1);
-    addChild(divNode, $3);
+    addChild(modNode, $1);
+    addChild(modNode, $3);
   } | factor {
     $$ = $1;
   }
