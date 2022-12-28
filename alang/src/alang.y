@@ -16,7 +16,7 @@ AstNode *root;
 %token DEFINE ARRAY WHILE IF ELSE
 %token SEMICORON
 %token LBRACKET RBRACKET LPAREN RPAREN LBRACE RBRACE
-%token ASSIGN ADD SUB MUL DIV
+%token ASSIGN ADD SUB MUL DIV MOD
 %token EQUAL NEQ LT GT LEQ GEQ
 %token<sval> IDENT
 %token<ival> NUMBER
@@ -132,6 +132,10 @@ term:
     addChild(divNode, $1);
     addChild(divNode, $3);
     $$ = divNode;
+  } | term MOD factor {
+    AstNode *modNode = createVoidNode(AST_MOD);
+    addChild(divNode, $1);
+    addChild(divNode, $3);
   } | factor {
     $$ = $1;
   }

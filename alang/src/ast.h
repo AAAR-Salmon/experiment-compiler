@@ -18,6 +18,7 @@ enum AstNodeType {
   AST_SUB,
   AST_MUL,
   AST_DIV,
+  AST_MOD,
   AST_NUMBER,
   AST_EQUAL,
   AST_NEQ,

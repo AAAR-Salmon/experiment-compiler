@@ -53,6 +53,7 @@ char *nodeTypeToString(enum AstNodeType t) {
     case AST_SUB:           return "AST_SUB";
     case AST_MUL:           return "AST_MUL";
     case AST_DIV:           return "AST_DIV";
+    case AST_MOD:           return "AST_MOD";
     case AST_NUMBER:        return "AST_NUMBER";
     case AST_EQUAL:         return "AST_EQUAL";
     case AST_NEQ:           return "AST_NEQ";

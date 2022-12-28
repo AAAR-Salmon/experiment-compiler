@@ -22,6 +22,7 @@ else    return ELSE;
 "-"     return SUB;
 "*"     return MUL;
 "/"     return DIV;
+"%"     return MOD;
 "=="    return EQUAL;
 "!="    return NEQ;
 "<"     return LT;

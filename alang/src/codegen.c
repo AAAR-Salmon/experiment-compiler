@@ -277,5 +277,9 @@ void codegenExpr(AstNode *n) {
       write_inst_div(REG_V1, REG_V0);
       write_inst_mflo(REG_V0);
       break;
+    case AST_MOD:
+      write_inst_div(REG_V1, REG_V0);
+      write_inst_mfhi(REG_V0);
+      break;
   }
 }
