@@ -488,4 +488,21 @@ void write_dot_inst_byte(char data);
  */
 void write_pseudo_inst_move(P32Register dest, P32Register src);
 
+/**
+ * @brief push the value in the source register to stack pointer
+ *
+ * @param src
+ * @param pointer
+ */
+void write_pseudo_inst_push(P32Register src, P32Register pointer);
+
+/**
+ * @brief pop the value of the top of stack pointer,
+ *        and then store to destination register
+ *
+ * @param dest
+ * @param pointer
+ */
+void write_pseudo_inst_pop(P32Register dest, P32Register pointer);
+
 #endif

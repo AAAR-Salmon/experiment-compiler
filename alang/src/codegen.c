@@ -252,15 +252,11 @@ void codegenExpr(AstNode *n) {
 
   codegenExpr(left);
 
-  /* push */
-  write_inst_addi(REG_SP, REG_SP, -4);
-  write_inst_sw(REG_V0, REG_SP, 0);
+  write_pseudo_inst_push(REG_V0, REG_SP);
 
   codegenExpr(right);
 
-  /* pop */
-  write_inst_lw(REG_V1, REG_SP, 0);
-  write_inst_addi(REG_SP, REG_SP, 4);
+  write_pseudo_inst_pop(REG_V1, REG_SP);
 
   switch (n->nodeType) {
     case AST_ADD:

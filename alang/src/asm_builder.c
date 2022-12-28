@@ -210,3 +210,13 @@ void write_dot_inst_byte(char data) {
 void write_pseudo_inst_move(P32Register dest, P32Register src) {
   write_inst_and(dest, src, src);
 }
+
+void write_pseudo_inst_push(P32Register src, P32Register pointer) {
+  write_inst_sw(src, pointer, 0);
+  write_inst_addi(pointer, pointer, -4);
+}
+
+void write_pseudo_inst_pop(P32Register dest, P32Register pointer) {
+  write_inst_lw(dest, pointer, 4);
+  write_inst_addi(pointer, pointer, 4);
+}
