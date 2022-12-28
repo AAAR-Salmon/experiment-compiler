@@ -12,6 +12,7 @@ test: build/alang
 	./build/alang <test/011_leq_op.als >build/011_leq_op.s
 	./build/alang <test/012_array.als >build/012_array.s
 	./build/alang <test/013_division.als >build/013_division.s
+	./build/alang <test/014_prime.als >build/014_prime.s
 
 build/ast: src/ast.c src/ast.h build/ast_debug.o
 	$(CC) -DMAIN src/ast.c build/ast_debug.o -o build/ast -g
