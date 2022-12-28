@@ -136,6 +136,7 @@ term:
     AstNode *modNode = createVoidNode(AST_MOD);
     addChild(modNode, $1);
     addChild(modNode, $3);
+    $$ = modNode;
   } | factor {
     $$ = $1;
   }
