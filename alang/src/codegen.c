@@ -201,8 +201,12 @@ void codegenCondExpr(AstNode *n) {
   AstNode *right = n->child->brother;
 
   codegenExpr(left);
-  write_pseudo_inst_move(REG_V1, REG_V0);
+
+  write_pseudo_inst_push(REG_V0, REG_SP);
+
   codegenExpr(right);
+
+  write_pseudo_inst_pop(REG_V1, REG_SP);
 
   switch (n->nodeType) {
     case AST_EQUAL:
