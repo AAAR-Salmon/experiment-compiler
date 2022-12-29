@@ -12,7 +12,7 @@ i = 2;
 while (i <= N) {
   isprime[i] = 1;
   j = 2;
-  while (j < N) {
+  while (j < i) {
     if (i % j == 0) {
       isprime[i] = 0;
     }
