@@ -7,7 +7,7 @@ test: build/alang
 	./build/alang <test/001_sum.als >build/001_sum.s
 	./build/alang <test/002_fact.als >build/002_fact.s
 	./build/alang <test/003_fizzbuzz.als >build/003_fizzbuzz.s
-	./build/alang <test/004_eratosthenes.als >build/004_eratpsthenes.s
+	./build/alang <test/004_eratosthenes.als >build/004_eratosthenes.s
 	./build/alang <test/010_varindex_assign.als >build/010_varindex_assign.s
 	./build/alang <test/011_leq_op.als >build/011_leq_op.s
 	./build/alang <test/012_array.als >build/012_array.s
