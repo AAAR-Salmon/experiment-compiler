@@ -9,7 +9,7 @@ while (a < 101) {
 
 a = 2;
 b[1] = 1;
-while (a <= 50) {
+while (a <= 46) {
   b[a] = b[a - 1] + b[a - 2];
   a = a + 1;
 }
