@@ -5,7 +5,7 @@ use warnings;
 
 use File::Temp qw( tempfile tempdir );
 use File::Copy qw( copy );
-use Cwd qw(getcwd);
+use Cwd        qw(getcwd);
 
 my $current_dir = getcwd();
 
@@ -45,27 +45,29 @@ chdir($current_dir) or die "cannot chdir $current_dir: $!";
 # check global memory
 my $mem_path = "$asm_path.mem";
 
-open(my $globlmem_fh, '<', $globlmem_path) or die "cannot open $globlmem_path: $!";
+open( my $globlmem_fh, '<', $globlmem_path )
+    or die "cannot open $globlmem_path: $!";
 
-open(my $mem_fh, '<', $mem_path) or die "cannot open $mem_path: $!";
+open( my $mem_fh, '<', $mem_path ) or die "cannot open $mem_path: $!";
 my @mem_lines = <$mem_fh>;
-close ($mem_fh) or die "cannot close $mem_path: $!";
+close($mem_fh) or die "cannot close $mem_path: $!";
 
 my $pass = 1;
-while (my $line = <$globlmem_fh>) {
-    $line = strip ($line);
-    my ($address, $correct_value) = split(/=/, $line);
+while ( my $line = <$globlmem_fh> ) {
+    $line = strip($line);
+    my ( $address, $correct_value ) = split( /=/, $line );
     my $address_qword = $address =~ s/.$/0/r;
-    my @matched_lines = grep( /^$address_qword:/, @mem_lines);
-    my $qword_line = shift(@matched_lines);
+    my @matched_lines = grep( /^$address_qword:/, @mem_lines );
+    my $qword_line    = shift(@matched_lines);
 
     my $target_value;
-    if (!$qword_line) {
+    if ( !$qword_line ) {
         $target_value = '00000000';
-    } else {
-        SWITCH: {
+    }
+    else {
+    SWITCH: {
             $qword_line =~ s/^.*:\s*(.*)\s*/$1/;
-            my @qword = split(/ /, $qword_line);
+            my @qword = split( / /, $qword_line );
             $_ = $address;
             if (/^.*0$/) { $target_value = $qword[0]; last SWITCH; }
             if (/^.*4$/) { $target_value = $qword[1]; last SWITCH; }
@@ -76,9 +78,10 @@ while (my $line = <$globlmem_fh>) {
         }
     }
 
-    if ($target_value eq $correct_value) {
-        say "$target_value at $address, pass"
-    } else {
+    if ( $target_value eq $correct_value ) {
+        say "$target_value at $address, pass";
+    }
+    else {
         say "$target_value at $address, expected $correct_value";
         $pass = 0;
     }
