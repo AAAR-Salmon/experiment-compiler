@@ -71,7 +71,8 @@ while (my $line = <$globlmem_fh>) {
             if (/^.*4$/) { $target_value = $qword[1]; last SWITCH; }
             if (/^.*8$/) { $target_value = $qword[2]; last SWITCH; }
             if (/^.*c$/) { $target_value = $qword[3]; last SWITCH; }
-            die "unexpected address $address";
+            say "unexpected address $address at $globlmem_path line $.";
+            exit 2;
         }
     }
 
