@@ -65,9 +65,9 @@ while ( my $line = <$globlmem_fh> ) {
         $target_value = '00000000';
     }
     else {
+        $qword_line =~ s/^.*:\s*(.*)\s*/$1/;
+        my @qword = split( / /, $qword_line );
     SWITCH: {
-            $qword_line =~ s/^.*:\s*(.*)\s*/$1/;
-            my @qword = split( / /, $qword_line );
             $_ = $address;
             if (/^.*0$/) { $target_value = $qword[0]; last SWITCH; }
             if (/^.*4$/) { $target_value = $qword[1]; last SWITCH; }
