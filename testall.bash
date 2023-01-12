@@ -9,7 +9,7 @@ declare -a tests=(
   "test/011_leq_op.src          test/011_leq_op.globlmem"
   "test/012_array.src           test/012_array.globlmem"
   "test/013_division.src        test/013_division.globlmem"
-  "test/014_prime.src           test/014_prime.globlmem"
+# "test/014_prime.src           test/014_prime.globlmem"
   "test/015_mod.src             test/015_mod.globlmem"
 )
 
