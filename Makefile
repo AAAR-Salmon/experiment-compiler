@@ -3,28 +3,28 @@ YACC = bison
 
 .PHONY: test clean
 
-test: build/alang
-	./build/alang <test/001_sum.als >build/001_sum.s
-	./build/alang <test/002_fact.als >build/002_fact.s
-	./build/alang <test/003_fizzbuzz.als >build/003_fizzbuzz.s
-	./build/alang <test/004_eratosthenes.als >build/004_eratosthenes.s
-	./build/alang <test/010_varindex_assign.als >build/010_varindex_assign.s
-	./build/alang <test/011_leq_op.als >build/011_leq_op.s
-	./build/alang <test/012_array.als >build/012_array.s
-	./build/alang <test/013_division.als >build/013_division.s
-	./build/alang <test/014_prime.als >build/014_prime.s
-	./build/alang <test/015_mod.als >build/015_mod.s
+test: build/compiler
+	./build/compiler <test/001_sum.als >build/001_sum.s
+	./build/compiler <test/002_fact.als >build/002_fact.s
+	./build/compiler <test/003_fizzbuzz.als >build/003_fizzbuzz.s
+	./build/compiler <test/004_eratosthenes.als >build/004_eratosthenes.s
+	./build/compiler <test/010_varindex_assign.als >build/010_varindex_assign.s
+	./build/compiler <test/011_leq_op.als >build/011_leq_op.s
+	./build/compiler <test/012_array.als >build/012_array.s
+	./build/compiler <test/013_division.als >build/013_division.s
+	./build/compiler <test/014_prime.als >build/014_prime.s
+	./build/compiler <test/015_mod.als >build/015_mod.s
 
 build/ast: src/ast.c src/ast.h build/ast_debug.o
 	$(CC) -DMAIN src/ast.c build/ast_debug.o -o build/ast -g
 
-build/alang: build/alang.yy.c build/alang.tab.c build/ast.o build/ast_debug.o build/codegen.o build/symbol_table.o build/asm_builder.o
+build/compiler: build/compiler.yy.c build/compiler.tab.c build/ast.o build/ast_debug.o build/codegen.o build/symbol_table.o build/asm_builder.o
 	$(CC) -DYYERROR_VERBOSE $^ -o $@ -Isrc -l fl -l y -g
 
-build/alang.yy.c: src/alang.l
+build/compiler.yy.c: src/compiler.l
 	$(LEX) -o $@ $<
 
-build/alang.tab.c: src/alang.y
+build/compiler.tab.c: src/compiler.y
 	$(YACC) -d -o $@ $<
 
 build/ast.o: src/ast.c

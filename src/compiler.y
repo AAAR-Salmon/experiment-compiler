@@ -1,6 +1,6 @@
 %{
 #include "ast.h"
-#include "alang.tab.h"
+#include "compiler.tab.h"
 extern int yylex();
 extern int yyerror();
 

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "ast.h"
-#include "alang.tab.h"
+#include "compiler.tab.h"
 %}
 %%
 define  return DEFINE;
