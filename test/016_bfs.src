@@ -1,0 +1,55 @@
+array d[36]; define dn;
+array m[36];
+array queue[200]; define qhead; define qtail;
+define i;
+define n; define nn;
+define y; define ny;
+define x; define nx;
+array dy[4];
+array dx[4];
+
+# map definition (1 is enabled)
+m[ 0]=1; m[ 1]=0; m[ 2]=1; m[ 3]=1; m[ 4]=1; m[ 5]=0;
+m[ 6]=1; m[ 7]=1; m[ 8]=0; m[ 9]=1; m[10]=0; m[11]=1;
+m[12]=0; m[13]=1; m[14]=1; m[15]=1; m[16]=1; m[17]=0;
+m[18]=1; m[19]=1; m[20]=1; m[21]=0; m[22]=1; m[23]=1;
+m[24]=1; m[25]=0; m[26]=1; m[27]=1; m[28]=1; m[29]=0;
+m[30]=1; m[31]=1; m[32]=0; m[33]=1; m[34]=0; m[35]=1;
+
+dy[0] = 0-1; dx[0] =   0;
+dy[1] =   0; dx[1] = 0-1;
+dy[2] =   0; dx[2] =   1;
+dy[3] =   1; dx[3] =   0;
+
+# initialize d
+i = 0;
+while (i < 36) {
+  d[i] = 32767;
+  i = i + 1;
+}
+
+# set start position
+queue[0] = 15; qhead = 0; qtail = 1;
+d[queue[0]] = 0;
+
+while (qhead != qtail) {
+  # pop
+  n = queue[qhead]; qhead = (qhead + 1) % 200;
+
+  y = n / 6; x = n % 6;
+  dn = d[n];
+
+  i = 0;
+  while (i < 4) {
+    ny = y + dy[i]; nx = x + dx[i];
+    if (0 <= ny and ny < 6 and 0 <= nx and nx < 6) {
+      nn = ny * 6 + nx;
+      if (m[nn] and dn + 1 < d[nn]) {
+        d[nn] = dn + 1;
+        # push
+        queue[qtail] = nn; qtail = (qtail + 1) % 200;
+      }
+    }
+    i = i + 1;
+  }
+}

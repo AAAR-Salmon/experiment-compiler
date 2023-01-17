@@ -11,6 +11,7 @@ declare -a tests=(
   "test/013_division.src        test/013_division.globlmem"
 # "test/014_prime.src           test/014_prime.globlmem"
   "test/015_mod.src             test/015_mod.globlmem"
+  "test/016_bfs.src             test/016_bfs.globlmem"
 )
 
 for pair in "${tests[@]}"; do
