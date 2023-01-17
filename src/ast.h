@@ -14,18 +14,21 @@ enum AstNodeType {
   AST_IF,
   AST_IF_ELSE,
   AST_IDENT,
-  AST_ADD,
-  AST_SUB,
-  AST_MUL,
-  AST_DIV,
-  AST_MOD,
   AST_NUMBER,
-  AST_EQUAL,
+  AST_AND,
+  AST_OR,
+  AST_NOT,
+  AST_EQ,
   AST_NEQ,
   AST_LT,
   AST_LEQ,
   AST_GT,
-  AST_GEQ
+  AST_GEQ,
+  AST_ADD,
+  AST_SUB,
+  AST_MUL,
+  AST_DIV,
+  AST_MOD
 };
 
 typedef struct _AstNode {

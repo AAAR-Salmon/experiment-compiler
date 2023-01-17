@@ -49,18 +49,21 @@ char *nodeTypeToString(enum AstNodeType t) {
     case AST_IF:            return "AST_IF";
     case AST_IF_ELSE:       return "AST_IF_ELSE";
     case AST_IDENT:         return "AST_IDENT";
+    case AST_AND:           return "AST_AND";
+    case AST_OR:            return "AST_OR";
+    case AST_NOT:           return "AST_NOT";
+    case AST_EQ:            return "AST_EQ";
+    case AST_NEQ:           return "AST_NEQ";
+    case AST_LT:            return "AST_LT";
+    case AST_LEQ:           return "AST_LEQ";
+    case AST_GT:            return "AST_GT";
+    case AST_GEQ:           return "AST_GEQ";
     case AST_ADD:           return "AST_ADD";
     case AST_SUB:           return "AST_SUB";
     case AST_MUL:           return "AST_MUL";
     case AST_DIV:           return "AST_DIV";
     case AST_MOD:           return "AST_MOD";
     case AST_NUMBER:        return "AST_NUMBER";
-    case AST_EQUAL:         return "AST_EQUAL";
-    case AST_NEQ:           return "AST_NEQ";
-    case AST_LT:            return "AST_LT";
-    case AST_LEQ:           return "AST_LEQ";
-    case AST_GT:            return "AST_GT";
-    case AST_GEQ:           return "AST_GEQ";
     default:                return "!!UNKNOWN!!";
   }
 }

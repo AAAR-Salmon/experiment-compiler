@@ -18,7 +18,6 @@ void codegenWhileStmt(AstNode *n);
 void codegenIfStmt(AstNode *n);
 void codegenIfElseStmt(AstNode *n);
 void codegenReference(AstNode *n);
-void codegenCondExpr(AstNode *n);
 void codegenExpr(AstNode *n);
 
 void codegenProgram(AstNode *root) {
@@ -152,7 +151,7 @@ void codegenWhileStmt(AstNode *n) {
   codegenStmts(stmts);
 
   write_label(label_condition_while);
-  codegenCondExpr(cond);
+  codegenExpr(cond);
   write_inst_bne(REG_V0, REG_ZERO, label_begin_while);
   write_pseudo_inst_nop();
 }
@@ -164,7 +163,7 @@ void codegenIfStmt(AstNode *n) {
   snprintf(label_end_if, 10, "$IE%x", auto_label_cnt);
   auto_label_cnt++;
 
-  codegenCondExpr(cond);
+  codegenExpr(cond);
   write_inst_beq(REG_V0, REG_ZERO, label_end_if);
   write_pseudo_inst_nop();
 
@@ -182,7 +181,7 @@ void codegenIfElseStmt(AstNode *n) {
   snprintf(label_end_if, 10, "$IE%x", auto_label_cnt);
   auto_label_cnt++;
 
-  codegenCondExpr(cond);
+  codegenExpr(cond);
   write_inst_beq(REG_V0, REG_ZERO, label_begin_else);
   write_pseudo_inst_nop();
 
@@ -196,7 +195,22 @@ void codegenIfElseStmt(AstNode *n) {
   write_label(label_end_if);
 }
 
-void codegenCondExpr(AstNode *n) {
+void codegenExpr(AstNode *n) {
+  switch (n->nodeType) {
+    case AST_NUMBER:
+      write_pseudo_inst_li(REG_V0, n->ivalue);
+      return;
+    case AST_REFERENCE:
+      codegenReference(n);
+      write_inst_lw(REG_V0, REG_T0, 0);
+      write_pseudo_inst_nop();
+      return;
+    case AST_NOT:
+      codegenExpr(n->child);
+      write_inst_sltiu(REG_V0, REG_V0, 1);
+      return;
+  }
+
   AstNode *left = n->child;
   AstNode *right = n->child->brother;
 
@@ -209,7 +223,17 @@ void codegenCondExpr(AstNode *n) {
   write_pseudo_inst_pop(REG_V1, REG_SP);
 
   switch (n->nodeType) {
-    case AST_EQUAL:
+    case AST_AND:
+      write_inst_sltu(REG_V1, REG_ZERO, REG_V1);
+      write_inst_sltu(REG_V0, REG_ZERO, REG_V0);
+      write_inst_and(REG_V0, REG_V1, REG_V0);
+      break;
+    case AST_OR:
+      write_inst_sltu(REG_V1, REG_ZERO, REG_V1);
+      write_inst_sltu(REG_V0, REG_ZERO, REG_V0);
+      write_inst_or(REG_V0, REG_V1, REG_V0);
+      break;
+    case AST_EQ:
       /* $v1 == $v0  ->  !($v1 xor $v0) */
       write_inst_xor(REG_V0, REG_V1, REG_V0);
       write_inst_sltiu(REG_V0, REG_V0, 1);
@@ -225,7 +249,7 @@ void codegenCondExpr(AstNode *n) {
     case AST_LEQ:
       /* $v1 <= $v0  ->  !($v0 < $v1) */
       write_inst_slt(REG_V0, REG_V0, REG_V1);
-      write_inst_sltiu(REG_V0, REG_V0, 1);
+      write_inst_xori(REG_V0, REG_V0, 1);
       break;
     case AST_GT:
       /* $v1 > $v0  ->  $v0 < $v1 */
@@ -234,35 +258,8 @@ void codegenCondExpr(AstNode *n) {
     case AST_GEQ:
       /* $v1 >= $v0  ->  !($v1 < $v0) */
       write_inst_slt(REG_V0, REG_V1, REG_V0);
-      write_inst_sltiu(REG_V0, REG_V0, 1);
+      write_inst_xori(REG_V0, REG_V0, 1);
       break;
-  }
-}
-
-void codegenExpr(AstNode *n) {
-  switch (n->nodeType) {
-    case AST_NUMBER:
-      write_pseudo_inst_li(REG_V0, n->ivalue);
-      return;
-    case AST_REFERENCE:
-      codegenReference(n);
-      write_inst_lw(REG_V0, REG_T0, 0);
-      write_pseudo_inst_nop();
-      return;
-  }
-
-  AstNode *left = n->child;
-  AstNode *right = n->child->brother;
-
-  codegenExpr(left);
-
-  write_pseudo_inst_push(REG_V0, REG_SP);
-
-  codegenExpr(right);
-
-  write_pseudo_inst_pop(REG_V1, REG_SP);
-
-  switch (n->nodeType) {
     case AST_ADD:
       write_inst_add(REG_V0, REG_V1, REG_V0);
       break;
