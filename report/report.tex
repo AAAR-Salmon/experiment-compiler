@@ -1,0 +1,99 @@
+\documentclass[lualatex, a4paper, ja=standard]{bxjsarticle}
+
+\usepackage{luatexja}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{syntax}
+
+% \setlength{\grammerparsep}{}
+\setlength{\grammarindent}{16em}
+
+\setpagelayout*{margin=20truemm}
+
+\title{2022年度 コンパイラ実験 最終レポート}
+\author{氏名:  \\ 学生番号: }
+
+\begin{document}
+\maketitle
+
+\section{概要}
+Flex，Bison を用いて，独自の言語を
+maps で動作するアセンブリ言語に変換するコンパイラを作成する．
+
+\section{作成する言語の概要}
+
+\subsection{文法}
+
+この言語は次のような文法を持つ．
+ただし，$\langle\mathit{identifier}\rangle$ は
+正規表現 \verb/[a-zA-Z][a-zA-Z0-9]*/ に，
+$\langle\mathit{number}\rangle$ は
+正規表現 \verb/[0-9]+/ にマッチするトークンである．
+
+\begin{grammar}
+<program> ::=
+  <declarations> <statements>
+
+<declarations> ::=
+  <declaration-statement> <declarations> \alt
+  <declaration-statement>
+
+<declaration-statement> ::=
+  `define' <identifier> `;' \alt
+  `array' <identifier> `[' <number> `]' `;'
+
+<statements> ::=
+  <statement> <statements> \alt
+  <statement>
+
+<statement> ::=
+  <assign-statement> \alt
+  <loop-statement> \alt
+  <branch-statement>
+
+<assign-statement> ::=
+  <reference> `=' <expression> `;'
+
+<loop-statement> ::=
+  `while' `(' <expression> `)' `{' <statements> `)'
+
+<branch-statement> ::=
+  `if' `(' <expression> `)' `{' <statements> `}' \alt
+  `if' `(' <expression> `)' `{' <statements> `}' `else' `{' <statements> `}'
+
+<reference> ::=
+  <identifier> \alt
+  <identifier> `[' <expression> `]'
+
+<expression> ::=
+  <expression> `and' <conditional-expression> \alt
+  <expression> `or' <conditional-expression> \alt
+  `not' <conditional-expression> \alt
+  <conditional-expression>
+
+<conditional-expression> ::=
+  <additional-expression> `==' <additional-expression> \alt
+  <additional-expression> `!=' <additional-expression> \alt
+  <additional-expression> `<' <additional-expression> \alt
+  <additional-expression> `<=' <additional-expression> \alt
+  <additional-expression> `>' <additional-expression> \alt
+  <additional-expression> `>=' <additional-expression> \alt
+  <additional-expression>
+
+<additional-expression> ::=
+  <additional-expression> `+' <multiplicational-expression> \alt
+  <additional-expression> `-' <multiplicational-expression> \alt
+  <multiplicational-expression>
+
+<multiplicational-expression> ::=
+  <multiplicational-expression> `*' <primitive-expression> \alt
+  <multiplicational-expression> `/' <primitive-expression> \alt
+  <multiplicational-expression> `%' <primitive-expression> \alt
+  <primitive-expression>
+
+<primitive-expression> ::=
+  <reference> \alt
+  <number> \alt
+  `(' <expression> `)'
+\end{grammar}
+\end{document}
