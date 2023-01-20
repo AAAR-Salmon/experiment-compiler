@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage{amsmath, amssymb}
 \usepackage{syntax}
+\usepackage{fancyvrb}
 
 % \setlength{\grammerparsep}{}
 \setlength{\grammarindent}{16em}
@@ -97,4 +98,50 @@ $\langle\mathit{number}\rangle$ は
   <number> \alt
   `(' <expression> `)'
 \end{grammar}
+
+\subsection{受理するプログラムの例}
+
+以下に示すプログラムは必ずしも正常にコンパイルされるものではない．
+
+\begin{Verbatim}[frame=lines, numbers=left]
+define s;
+define i;
+
+s = 0;
+i = 1; while (i <= 10) {
+  s = s + i;
+  i = i + 1;
+}
+\end{Verbatim}
+
+\begin{Verbatim}[frame=lines, numbers=left]
+array fib[20];
+define i;
+
+fib[0] = 0;
+fib[1] = 1;
+i = 2; while (i < 20) {
+  fib[i] = fib[i-1] + fib[i-2];
+}
+\end{Verbatim}
+
+\begin{Verbatim}[frame=lines, numbers=left]
+define in1;
+define in2;
+define inc;
+define outs;
+define outc;
+
+# set input here
+in1 = 0;
+in2 = 1;
+inc = 1;
+
+# outs = (in1 xor in2) xor inc
+outs = (in1 and (not in2)) or ((not in1) and in2);
+outs = (outs and (not inc)) or ((not outs) and inc);
+
+outc = ((in1 and in2) or (in1 and inc)) or (in2 and inc);
+\end{Verbatim}
+
 \end{document}
