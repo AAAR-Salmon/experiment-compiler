@@ -271,4 +271,64 @@ ASTから値 $N$ を取得し，
   に対応するコードを生成する．
 \end{enumerate}
 
+\subsection{最終課題}
+
+課題1から課題4までを実施した．
+
+最終課題を解くためのプログラムは
+\url{https://github.com/AAAR-Salmon/experiment-compiler/tree/compiler/test}
+以下 \verb|{001..004}_*.src| にある．
+
+最終課題のプログラムが正常に動作したかのテストは
+\verb|mapstest.pl| のPerlスクリプトによって行う．
+カレントディリレクトリをリポジトリルートとし，次のコマンドを順に実行する．
+\begin{Verbatim}[frame=lines]
+mkdir build
+make build/compiler
+./mapstest.pl build/compiler test/001_sum.src test/001_sum.globlmem
+./mapstest.pl build/compiler test/002_fact.src test/002_fact.globlmem
+./mapstest.pl build/compiler test/003_fizzbuzz.src test/003_fizzbuzz.globlmem
+./mapstest.pl build/compiler test/004_eratosthenes.src test/004_eratosthenes.globlmem
+\end{Verbatim}
+
+\verb|mapstest.pl| の第3引数は，\verb|maps -e| コマンド実行時に出力される
+\verb|.mem| ファイルのテスト用ファイルであり，次のような形式を取る．
+\begin{Verbatim}[frame=lines, label=test/001_sum.globlmem]
+10008000=0000000b
+10008004=00000037
+\end{Verbatim}
+
+このとき，出力は次のようであった．
+\begin{Verbatim}[frame=lines]
+$ ./mapstest.pl build/compiler test/001_sum.src test/001_sum.globlmem
+0000000b at 10008000, pass
+00000037 at 10008004, pass
+465 insts. executed, on test test/001_sum.src
+$ ./mapstest.pl build/compiler test/002_fact.src test/002_fact.globlmem
+00000078 at 10008000, pass
+00000006 at 10008004, pass
+255 insts. executed, on test test/002_fact.src
+$ ./mapstest.pl build/compiler test/003_fizzbuzz.src test/003_fizzbuzz.globlmem
+00000008 at 10008000, pass
+00000004 at 10008004, pass
+00000002 at 10008008, pass
+00000010 at 1000800c, pass
+0000001f at 10008010, pass
+2838 insts. executed, on test test/003_fizzbuzz.src
+$ ./mapstest.pl build/compiler test/004_eratosthenes.src test/004_eratosthenes.globlmem
+000003e8 at 10008000, pass
+00000000 at 1000800c, pass
+00000000 at 10008010, pass
+00000001 at 10008014, pass
+00000001 at 10008018, pass
+00000000 at 1000801c, pass
+00000001 at 10008020, pass
+（中略）
+00000000 at 10008fac, pass
+111422 insts. executed, on test test/004_eratosthenes.src
+\end{Verbatim}
+
+以上から，課題1は465命令で，課題2は255命令で，
+課題3は2838命令で，課題4は111422命令で期待した通りに実行された．
+
 \end{document}
