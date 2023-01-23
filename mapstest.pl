@@ -38,6 +38,13 @@ chdir($working_dir) or die "cannot chdir $working_dir: $!";
 
 open( my $maps_out_fh, '-|', "maps -e -q $asm_path" )
     or die "cannot execute maps: $!";
+my $inst_count = do {
+    my @maps_out   = <$maps_out_fh>;
+    my @match      = grep( /total inst\. count:\s*[0-9]+$/, @maps_out );
+    my $inst_count = shift(@match);
+    ${^MATCH} if $inst_count =~ m/([0-9])+/p;
+};
+
 close($maps_out_fh) or die "maps: $!";
 
 chdir($current_dir) or die "cannot chdir $current_dir: $!";
@@ -79,7 +86,7 @@ while ( my $line = <$globlmem_fh> ) {
     }
 
     if ( $target_value eq $correct_value ) {
-        say "$target_value at $address, pass";
+        say "$target_value at $address, pass, $inst_count insts. executed";
     }
     else {
         say "$target_value at $address, expected $correct_value";
