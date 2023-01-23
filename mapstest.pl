@@ -86,7 +86,7 @@ while ( my $line = <$globlmem_fh> ) {
     }
 
     if ( $target_value eq $correct_value ) {
-        say "$target_value at $address, pass, $inst_count insts. executed";
+        say "$target_value at $address, pass";
     }
     else {
         say "$target_value at $address, expected $correct_value";
@@ -95,5 +95,7 @@ while ( my $line = <$globlmem_fh> ) {
 }
 
 close($globlmem_fh) or die "cannot close $globlmem_path: $!";
+
+say "$inst_count insts. executed, on test $source_path";
 
 exit 1 unless $pass;
