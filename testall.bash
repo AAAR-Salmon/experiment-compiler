@@ -1,17 +1,18 @@
 #!/bin/bash
 
 declare -a tests=(
-  "test/001_sum.src             test/001_sum.globlmem"
-  "test/002_fact.src            test/002_fact.globlmem"
-  "test/003_fizzbuzz.src        test/003_fizzbuzz.globlmem"
-  "test/004_eratosthenes.src    test/004_eratosthenes.globlmem"
-  "test/010_varindex_assign.src test/010_varindex_assign.globlmem"
-  "test/011_leq_op.src          test/011_leq_op.globlmem"
-  "test/012_array.src           test/012_array.globlmem"
-  "test/013_division.src        test/013_division.globlmem"
-# "test/014_prime.src           test/014_prime.globlmem"
-  "test/015_mod.src             test/015_mod.globlmem"
-  "test/016_bfs.src             test/016_bfs.globlmem"
+  "test/001_sum.src               test/001_sum.globlmem"
+  "test/002_fact.src              test/002_fact.globlmem"
+  "test/003_fizzbuzz.src          test/003_fizzbuzz.globlmem"
+  "test/004_eratosthenes.src      test/004_eratosthenes.globlmem"
+  "test/010_varindex_assign.src   test/010_varindex_assign.globlmem"
+  "test/011_leq_op.src            test/011_leq_op.globlmem"
+  "test/012_array.src             test/012_array.globlmem"
+  "test/013_division.src          test/013_division.globlmem"
+# "test/014_prime.src             test/014_prime.globlmem"
+  "test/015_mod.src               test/015_mod.globlmem"
+  "test/016_bfs.src               test/016_bfs.globlmem"
+  "test/017_exprindex_assign.src  test/017_exprindex_assign.globlmem"
 )
 
 for pair in "${tests[@]}"; do
