@@ -331,4 +331,64 @@ $ ./mapstest.pl build/compiler test/004_eratosthenes.src test/004_eratosthenes.g
 以上から，課題1は465命令で，課題2は255命令で，
 課題3は2838命令で，課題4は111422命令で期待した通りに実行された．
 
+\section{工夫した点}
+
+\subsection{回帰テストの自動化}
+
+最終課題 の章でも説明したが，
+\verb|mapstest.pl| というPerlスクリプトを書き，テストを簡単にした．
+
+また，Makefileにテストを記述することで，
+ビルド時に自動でテストが実行されるようにした．
+これによって言語の仕様変更が簡単になる．
+Git管理しているため，テストに失敗した場合も差し戻せる．
+
+\verb|make| コマンドの実行時には次のように出力される．
+
+\begin{Verbatim}
+$ make
+flex -o build/compiler.yy.c src/compiler.l
+bison -d -o build/compiler.tab.c src/compiler.y
+cc -c src/ast.c -o build/ast.o -g
+cc -c src/ast_debug.c -o build/ast_debug.o -g
+cc -c src/codegen.c -o build/codegen.o -g
+cc -c src/symbol_table.c -o build/symbol_table.o -g
+cc -c src/asm_builder.c -o build/asm_builder.o -g
+cc -DYYERROR_VERBOSE build/compiler.yy.c build/compiler.tab.c build/ast.o build/ast_debug.o 
+build/codegen.o build/symbol_table.o build/asm_builder.o -o build/compiler -Isrc -l fl -l y -g
+./testall.bash
+test 001_sum: pass
+test 002_fact: pass
+test 003_fizzbuzz: pass
+test 004_eratosthenes: pass
+test 010_varindex_assign: pass
+test 011_leq_op: pass
+test 012_array: pass
+test 013_division: pass
+test 015_mod: pass
+test 016_bfs: pass
+\end{Verbatim}
+
+\subsection{抽象構文木のフラット化}
+
+抽象構文木の生成，特に \verb|DECLARATIONS| と \verb|STATEMENTS| の生成時，
+\verb|mergeChildren| 関数を呼び出すことで木構造をフラット化している．
+
+連結リスト構造で扱う仕様上，
+先頭への1要素の追加のコストが低く，
+かつ構文木の構造が簡単になるのでこのようにした．
+
+\subsection{配列インデックスの式への対応}
+
+配列のインデックスに式を指定できるようにすることで，
+次のような文も受理される．
+\begin{Verbatim}[frame=lines]
+a[i] = a[i-1] + a[i-2];
+\end{Verbatim}
+
+\subsection{条件式と算術式の統合}
+
+算術式をwhileとifの条件部に与えることができるため，
+\verb|a != 0| のような冗長な表現をしなくともよい．
+
 \end{document}
