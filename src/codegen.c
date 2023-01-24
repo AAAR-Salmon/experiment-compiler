@@ -104,10 +104,14 @@ void codegenAssignStmt(AstNode *n) {
   AstNode *right = n->child->brother;
 
   codegenExpr(right);
-  write_pseudo_inst_move(REG_V1, REG_V0);
+
+  write_pseudo_inst_push(REG_V0, REG_SP);
+
   codegenReference(left);
 
-  write_inst_sw(REG_V1, REG_T0, 0);
+  write_pseudo_inst_pop(REG_V0, REG_SP);
+
+  write_inst_sw(REG_V0, REG_T0, 0);
 }
 
 void codegenReference(AstNode *n) {
